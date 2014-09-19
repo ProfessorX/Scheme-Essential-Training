@@ -1,0 +1,3 @@
+#lang slideshow
+(define c (circle 10))
+(define r (rectangle 10 20))
