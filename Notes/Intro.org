@@ -1,0 +1,23 @@
+* Prologue: How to Program
+/Bad programming is easy. Even Dummies can learn it in 21 days./
+
+** Foreword
+
+*** How the Second Edition Differs from the First
+    - In particular, this edition focuses on two kinds of programs:
+      interactive, reactive (graphical) programs and so-called batch
+      programs.
+    - 
+
+** Prologue
+   - What the book is not about Many early books on programming and
+     even some of today’s books teach you a lot about the authors’
+     favorite application discipline for programming: mathematics,
+     physics, music, accounting, and so on. To some extent that is
+     natural, because programming is useful in those areas. Then
+     again, it forces you to know a lot (or at least something) about
+     those disciplines. This book really focuses on programming and
+     problem solving and what computer science can teach you in this
+     regard. We have made every attempt to minimize the use of
+     knowledge from other areas; for those few occasions when we went
+     too far, we apologize. 
