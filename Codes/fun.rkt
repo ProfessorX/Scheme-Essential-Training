@@ -1,1 +1,2 @@
-#lang slideshow
+#lang racket
+(display "Hello, World!")

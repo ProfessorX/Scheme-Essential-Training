@@ -20,4 +20,21 @@
      problem solving and what computer science can teach you in this
      regard. We have made every attempt to minimize the use of
      knowledge from other areas; for those few occasions when we went
-     too far, we apologize. 
+     too far, we apologize.
+   - Let’s summarize again. To program is to write down an arithmetic
+     expression, but you’re no longer restricted to boring numbers.
+   - Indeed, programs are functions, and once you understand functions
+     well, you know almost everything there is about programming.
+   - ~(define (FunctionName InputName) BodyExpression)~
+   - You can launch a function by hand on a few select inputs to
+     ensure it produces the proper outputs. This is called testing a
+     function.
+   - In the ideal program, a small request, such as changing the sizes
+     of the canvas, should require an equally small change.
+   - In modern parlance, you have just experienced your first program
+     refactoring. Every time you re-organize your program to prepare
+     yourself for likely future change requests, you refactor your
+     program.
+   - As you read on, keep in mind that real programs consists of
+     50,000 or 500,000 or 5,000,000 lines of code.
+   - 

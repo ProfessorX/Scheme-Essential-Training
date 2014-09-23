@@ -31,4 +31,5 @@
 
 
 
-
+; Input and Output
+(define (y x) (* x x))
