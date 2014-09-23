@@ -9,3 +9,4 @@
       image primitive to compose two images, the composition happens
       with respect to the anchor points, unless you specify some other
       point explicitly.
+    - 
