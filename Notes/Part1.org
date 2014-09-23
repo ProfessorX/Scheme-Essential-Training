@@ -1,0 +1,11 @@
+# Life is awesome in the United Arab Emirates.
+* Fixed-Size Data
+
+** Arithmetic
+   
+
+*** The arithmetic of images
+    - One of these pixels is an implicit anchor point. When you use an
+      image primitive to compose two images, the composition happens
+      with respect to the anchor points, unless you specify some other
+      point explicitly.

@@ -37,4 +37,18 @@
      program.
    - As you read on, keep in mind that real programs consists of
      50,000 or 500,000 or 5,000,000 lines of code.
-   - 
+   - The answer is that for constant definitions, the order matters,
+     and for function definitions it doesn’t. As soon as DrRacket
+     encounters a constant definition, it determines the value of the
+     expression and then associates the name with this value.
+   - Better than pondering is doing. It’s the only way to learn. So
+     don’t let us stop you. Just do it.
+   - It is about reading problem statements, extracting the important
+     concepts. It is about figuring out what is really wanted. It is
+     about exploring examples to strengthen your intuitive
+     understanding of the problem. It is about organizing knowledge
+     and it is about knowing what you don’t know yet. It is about
+     filling those last few gaps. It is about making sure that you
+     know how and why your code works, and that you and your readers
+     will do so in the future. In short, it is really about solving
+     problems systematically. 
