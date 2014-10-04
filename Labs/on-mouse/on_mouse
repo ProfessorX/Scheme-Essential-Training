@@ -1,0 +1,5 @@
+#lang racket
+
+(check-expect (handle-mouse empty 3 4 "button-down")
+             (cons (make-dot 3 4) empty))
+(check-expect (handle-mouse 3 4 "drag") empty)
