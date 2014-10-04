@@ -1,0 +1,18 @@
+# This is the "e-notebook" for Racket Guide. 
+# Collected and summarized by Abraham Xiao. Original copyrights belong
+# to Matthew Flatt and PLT team. For this document, refer to the
+# repository LICENSE.
+* The Racket Guide
+
+** Racket Essentials
+   - Under the hood, a function definition is really the same as a
+     non-function definition, and a function name does not have to be
+     used in a function call. A function is just another kind of
+     value, though the printed form is necessarily less complete than
+     the printed form of a number or string.
+   - A function definition can include multiple expressions for the
+     function’s body. In that case, only the value of the last
+     expression is returned when the function is called.
+   - 
+
+ 
