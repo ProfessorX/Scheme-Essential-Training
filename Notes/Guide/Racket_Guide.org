@@ -22,6 +22,77 @@
    - The body of a Racket iteration is packaged into a function to be
      applied to each element, so the lambda form becomes particularly
      handy in combination with iteration functions.
+   - The cons function actually accepts any two values, not just a
+     list for the second argument. When the second argument is not
+     empty and not itself produced by cons, the result prints in a
+     special way. The two values joined with cons are printed between
+     parentheses, but with a dot (i.e., a period surrounded by
+     whitespace) in between
+   - In the same way that parenthesized output should not be confused
+     with expressions, a printed symbol should not be confused with
+     an identifier. In particular, the symbol (quote map) has nothing
+     to do with the map identifier or the predefined function that is
+     bound to map, except that the symbol and the identifier happen
+     to be made up of the same letters.
+   - The syntax of Racket is not defined directly in terms of
+     character streams. Instead, the syntax is determined by two
+     layers:
+     - a reader layer, which turns a sequence of characters into
+       lists, symbols, and other constants
+     - an expander layer, which processes the lists, symbols, and
+       other constants to parse them as an expression.
+
+
+
+** Built-In Datatypes
+   - Racket has two distinguished constants to represent boolean
+     values: #t for true and #f for false. Uppercase #T and #F are
+     parsed as the same values, but the lowercase forms are
+     preferred.
+   - Inexact numbers print with a decimal point or exponent specifier,
+     and exact numbers print as integers and fractions. The same
+     conventions apply for reading number constants, but #e or #i can
+     prefix a number to force its parsing as an exact or inexact
+     number. The prefixes #b, #o, and #x specify binary, octal, and
+     hexadecimal interpretation of digits.
+   - The = procedure compares numbers for numerical equality. If it is
+     given both inexact and exact numbers to compare, it essentially
+     converts the inexact numbers to exact before com- paring. The
+     eqv? (and therefore equal?) procedure, in contrast, compares
+     numbers considering both exactness and numerical equality.
+   - Beware of comparisons involving inexact numbers, which by their
+     nature can have surprising behavior. Even apparently simple
+     inexact numbers may not mean what you think they mean; for
+     example, while a base-2 IEEE floating-point number can represent
+     1/2 exactly, it can only approximate 1/10.
+   - A printable character normally prints as #\ followed by the
+     represented character. An un- printable character normally prints
+     as #\u followed by the scalar value as hexadecimal num- ber. A
+     few characters are printed specially; for example, the space and
+     linefeed characters print as #\space and #\newline,
+     respectively.
+   - A string can be mutable or immutable; strings written directly as
+     expressions are immutable, but most other strings are
+     mutable. The make-string procedure creates a mutable string given
+     a length and optional fill character. The string-ref procedure
+     accesses a character from a string (with 0-based indexing); the
+     string-set! procedure changes a character in a mutable string.
+   - For any sequence of characters, exactly one corresponding symbol
+     is interned; calling the string->symbol procedure, or reading a
+     syntactic identifier, produces an interned symbol. Since interned
+     symbols can be cheaply compared with eq? (and thus eqv? or
+     equal?), they serve as a convenient values to use for tags and
+     enumerations.
+   - Actually, # is disallowed only at the beginning of a symbol, and
+     then only if not followed by %; otherwise, # is allowed,
+     too. Also, . by itself is not a symbol. 
+
+
+
+
+
+
+
 
 
  

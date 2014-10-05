@@ -30,7 +30,7 @@
 (* 1 2 3 4 5 6 7 8 9 0)
 
 ; Arithmetic and Arithmetic
-(string-append "hello" "world")
+(string-append "hello" "world")\
 (string-append "hello " "world")
 (string-append "hell" "o" "world")
 (string-append "hello" " " "world")
