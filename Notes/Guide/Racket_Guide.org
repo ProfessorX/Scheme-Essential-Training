@@ -13,6 +13,15 @@
    - A function definition can include multiple expressions for the
      function’s body. In that case, only the value of the last
      expression is returned when the function is called.
-   - 
+   - For function calls, the first <expr> can be anything that
+     evaluates to a function. For example, it can be a conditional
+     expression.
+   - In Racket, you can use a lambda expression to produce a function
+     directly. The lambda form is followed by identifiers for the
+     function’s arguments, and then the function’s body expressions.
+   - The body of a Racket iteration is packaged into a function to be
+     applied to each element, so the lambda form becomes particularly
+     handy in combination with iteration functions.
+
 
  
