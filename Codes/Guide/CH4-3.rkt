@@ -101,6 +101,7 @@ a list bound to rest-id .
 ; test
 (max-mag 1 -2 0)
 (max-mag)
+(max-mag 1 998 -1000 2012 )
 
 ; declaring optional arguments
 ; (lambda gen-formals
