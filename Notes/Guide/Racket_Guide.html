@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Racket_Guide</title>
-<!-- 2014-10-06 Mon 00:43 -->
+<!-- 2014-10-06 Mon 12:44 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Abraham Xiao" />
@@ -320,7 +320,29 @@ recognizes pairs.
 precisely, a list is either the empty list null, or it is a pair
 whose first element is a list element and whose second element is
 a list. The list? predicate recognizes lists. The null? predicate
-recognizes the empty list. (<b>Fuck this recursive definition</b>)
+recognizes the empty list. (<b>Fuck this recursive definition)</b>
+</li>
+<li>Pairs are immutable (contrary to Lisp tradition), and pair? and
+list? recognize immutable pairs and lists, only. The mcons
+procedure creates a mutable pair, which works with set- mcar! and
+set-mcdr!, as well as mcar and mcdr. A mutable pair prints using
+mcons, while write and display print mutable pairs with { and }.
+</li>
+<li>When allocating extra lists seems too expensive, consider using
+looping forms like for/fold, which recognize vectors as well as
+lists.
+</li>
+<li>The hash, hasheqv, and hasheq functions create immutable hash
+tables from an initial set of keys and values, in which each
+value is provided as an argument after its key. Immutable hash
+tables can be extended with hash-set, which produces a new
+immutable hash table in constant time.
+</li>
+<li>A literal immutable hash table can be written as an expression by
+using #hash (for an equal?-based table), #hasheqv (for an
+eqv?-based table), or #hasheq (for an eq?-based table). A
+parenthesized sequence must immediately follow #hash, #hasheq, or
+#hasheqv, where each element is a dotted key–value pair. <code>Life~</code>
 </li>
 </ul>
 </div>
@@ -329,7 +351,7 @@ recognizes the empty list. (<b>Fuck this recursive definition</b>)
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Abraham Xiao</p>
-<p class="date">Created: 2014-10-06 Mon 00:43</p>
+<p class="date">Created: 2014-10-06 Mon 12:44</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.8)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

@@ -188,6 +188,131 @@ null
 (list? (cons 1 (cons 2 null)))
 (list? (cons 1 2))
 
+(srcloc "file.rkt" 1 0 1 (+ 4 4))
+(list 'here (srcloc "file.rkt" 1 0 1 9) 'there)
+(cons 1 (srcloc "file.rkt" 1 0 1 8))
+(cons 1 (cons 2 (srcloc "file.rkt" 1 0 1 8)))
+
+(write (cons 1 2))
+(display (cons 1 2))
+(write null)
+(display null)
+(write (list 1 2 "3"))
+(display (list 1 2 "3"))
+
+;; VIP: This note matters a lot!
+; Among the most important predefined procedures on lists are those that iterate through the
+; list’s elements
+(map (λ (i) (/ 1 i))
+     '(1 2 3))
+(andmap (λ (i) (i . < . 3))
+        '(1 2 3))
+(ormap (λ (i) (i . < . 3))
+       '(1 2 3))
+(ormap (λ (i) (< i 3))
+       '(1 2 3))  ; this is the same as above
+(filter (λ (i) (i . < . 3))
+        '(1 2 3))
+(foldl (λ (v i) (+ v i))
+       10
+       '(1 2 3))
+(for-each (λ (i) (display i))
+          '(1 2 3 4 998))
+(member "Keys"
+        '("Florida" "Keys" "U.S.A"))
+
+(assoc 'where
+       '((when "3:30") (where "Florida") (who "Mickey")))
+
+(define p (mcons 1 2))
+p
+(pair? p)
+(mpair? p)
+(set-mcar! p 0)
+p
+(write p)
+
+;; Vectors
+; A vector is a fixed-length array of arbitrary values. 
+#("a" "b" "c")
+#(name (that tune))
+#4(baldwin bruce)  ; not working on dbg, working on REPL
+(vector-ref #("a" "b" "c") 1)
+(vector-ref #(name (that tune)) 1)
+(list->vector (map string-titlecase 
+                   (vector->list #("three" "blind" "mice"))))
+
+;; Hash Tables
+#|
+A hash table implements a mapping from keys to values, where both keys and values can
+be arbitrary Racket values, and access and update to the table are normally constant-time
+operations.
+|#
+(define ht (make-hash))
+(hash-set! ht "apple" '(red round))
+(hash-set! ht "banana" '(yellow long))
+
+(hash-ref ht "apple")
+(hash-ref ht "coconut")  ; this will not work
+(hash-ref ht "coconut" "not there")
+
+(define ht (hash "apple" 'red "banana" 'yellow))
+(hash-ref ht "apple")
+(define ht2 (hash-set ht "coconut" 'brown))
+(hash-ref ht "coconut")
+(hash-ref ht2 "coconut")
+
+(define ht #hash(("apple" . red)
+                 ("banana" . yellow)))
+(hash-ref ht "apple")
+
+#hash(("apple" . red)
+      ("banana" . yellow))  ; use this in REPL, direct eval will not work
+
+(hash 1 (srcloc "file.rkt" 1 0 1 (+ 4 4)))
+
+; A mutable hash table can optionally retain its keys weakly, so each mapping is retained only
+; so long as the key is retained elsewhere.
+(define ht (make-weak-hasheq))
+(hash-set! ht (gensym) "can you see me?")
+(collect-garbage)
+(hash-count ht)
+
+(let ([g (gensym)])
+  (hash-set! ht g (list g)))
+(collect-garbage)
+(hash-count ht)
+
+(define ht (make-weak-hasheq))
+(let ([g (gensym)])
+  (hash-set! ht g (make-ephemeron g (list g))))
+(collect-garbage)
+(hash-count ht)
+
+;; Box
+; A box is like a single-element vector. It has no practical usage.
+(define b (box "apple"))
+b
+(unbox b)
+(set-box! b '(banana boat))
+b
+
+;; Void and Undefined
+(void)
+(void 1 2 3)
+(list (void))
+
+(define (fails)
+  (define x x)
+  x)
+
+(fails)
+
+
+
+
+
+
 
 
 

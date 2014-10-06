@@ -98,6 +98,42 @@
      whose first element is a list element and whose second element is
      a list. The list? predicate recognizes lists. The null? predicate
      recognizes the empty list. (*Fuck this recursive definition)*
+   - Pairs are immutable (contrary to Lisp tradition), and pair? and
+     list? recognize immutable pairs and lists, only. The mcons
+     procedure creates a mutable pair, which works with set- mcar! and
+     set-mcdr!, as well as mcar and mcdr. A mutable pair prints using
+     mcons, while write and display print mutable pairs with { and }.
+   - When allocating extra lists seems too expensive, consider using
+     looping forms like for/fold, which recognize vectors as well as
+     lists.
+   - The hash, hasheqv, and hasheq functions create immutable hash
+     tables from an initial set of keys and values, in which each
+     value is provided as an argument after its key. Immutable hash
+     tables can be extended with hash-set, which produces a new
+     immutable hash table in constant time.
+   - A literal immutable hash table can be written as an expression by
+     using #hash (for an equal?-based table), #hasheqv (for an
+     eqv?-based table), or #hasheq (for an eq?-based table). A
+     parenthesized sequence must immediately follow #hash, #hasheq, or
+     #hasheqv, where each element is a dotted key–value pair.
+   - Beware that even a weak hash table retains its values strongly,
+     as long as the corresponding key is accessible. This creates a
+     catch-22 dependency when a value refers back to its key, so that
+     the mapping is retained permanently. To break the cycle, map the
+     key to an ephemeron that pairs the value with its key (in
+     addition to the implicit pairing of the hash table).
+   -
+
+** Expressions and Definitions
+   - Forms like define, lambda, and let associate a meaning with one
+     or more identifiers; that is, they bind identifiers. The part of
+     the program for which the binding applies is the scope of the
+     binding. The set of bindings in effect for a given expression is
+     the expression’s environment.
+
+
+
+
 
 
 
