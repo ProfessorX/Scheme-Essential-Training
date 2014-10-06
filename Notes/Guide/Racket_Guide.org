@@ -130,6 +130,17 @@
      the program for which the binding applies is the scope of the
      binding. The set of bindings in effect for a given expression is
      the expression’s environment.
+   - As a convenience, the apply function accepts additional arguments
+     between the function and the list. The additional arguments are
+     effectively consed onto the argument list.
+   - Instead of just an identifier, an argument (other than a rest
+     argument) in a lambda form can be specified with an identifier
+     and a default value.
+   -  The function supplied to make-keyword-procedure receives keyword
+      arguments through parallel lists in the first two (by-position)
+      arguments, and then all by-position arguments from an
+      application as the remaining by-position arguments. 
+
 
 
 
