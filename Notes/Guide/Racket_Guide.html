@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Racket_Guide</title>
-<!-- 2014-10-05 Sun 22:58 -->
+<!-- 2014-10-06 Mon 00:43 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Abraham Xiao" />
@@ -287,7 +287,40 @@ represented character. An un- printable character normally prints
 as #\u followed by the scalar value as hexadecimal num- ber. A
 few characters are printed specially; for example, the space and
 linefeed characters print as #\space and #\newline,
-respectively. 
+respectively.
+</li>
+<li>A string can be mutable or immutable; strings written directly as
+expressions are immutable, but most other strings are
+mutable. The make-string procedure creates a mutable string given
+a length and optional fill character. The string-ref procedure
+accesses a character from a string (with 0-based indexing); the
+string-set! procedure changes a character in a mutable string.
+</li>
+<li>For any sequence of characters, exactly one corresponding symbol
+is interned; calling the string-&gt;symbol procedure, or reading a
+syntactic identifier, produces an interned symbol. Since interned
+symbols can be cheaply compared with eq? (and thus eqv? or
+equal?), they serve as a convenient values to use for tags and
+enumerations.
+</li>
+<li>Actually, # is disallowed only at the beginning of a symbol, and
+then only if not followed by %; otherwise, # is allowed,
+too. Also, . by itself is not a symbol.
+</li>
+<li>Keywords are intended for use (unquoted) as special markers in
+argument lists and in certain syntactic forms. For run-time flags
+and enumerations, use symbols instead of keywords.
+</li>
+<li>A pair joins two arbitrary values. The cons procedure constructs
+pairs, and the car and cdr procedures extract the first and
+second elements of the pair, respectively. The pair? predicate
+recognizes pairs.
+</li>
+<li>A list is a combination of pairs that creates a linked list. More
+precisely, a list is either the empty list null, or it is a pair
+whose first element is a list element and whose second element is
+a list. The list? predicate recognizes lists. The null? predicate
+recognizes the empty list. (<b>Fuck this recursive definition</b>)
 </li>
 </ul>
 </div>
@@ -296,7 +329,7 @@ respectively.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Abraham Xiao</p>
-<p class="date">Created: 2014-10-05 Sun 22:58</p>
+<p class="date">Created: 2014-10-06 Mon 00:43</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.8)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>

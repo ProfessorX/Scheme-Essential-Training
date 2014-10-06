@@ -160,6 +160,36 @@ s
 (eq? 'a (string->uninterned-symbol "a"))
 
 ;; Keywords
+; A keyword value is similar to a symbol 
+(string->keyword "apple")
+'#:apple
+(eq? '#:apple (string->keyword "apple"))
+
+not-a-symbol-expression
+#:not-a-symbol-expression
+(define dir (find-system-path 'temp-dir))  ; not '#:temp-dir
+(with-output-to-file (build-path dir "stuff.txt")
+  (λ () (printf "example\n"))
+  ; optional #:mode argument can be 'text or 'binary
+  #:mode 'text
+  ; optional #:exists argument can be 'replace, 'truncate
+  #:exists 'replace)
+
+;; Pairs and Lists
+(cons 1 2)
+(cons (cons 1 2) 3)
+(car (cons 1 2))
+(cdr (cons 1 2))
+(pair? (cons 1 2))
+
+null
+(cons 0 (cons 1 (cons 2 null)))
+(list? null)
+(list? (cons 1 (cons 2 null)))
+(list? (cons 1 2))
+
+
+
 
 
 

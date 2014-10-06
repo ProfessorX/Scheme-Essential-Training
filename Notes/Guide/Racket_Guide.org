@@ -85,7 +85,22 @@
      enumerations.
    - Actually, # is disallowed only at the beginning of a symbol, and
      then only if not followed by %; otherwise, # is allowed,
-     too. Also, . by itself is not a symbol. 
+     too. Also, . by itself is not a symbol.
+   - Keywords are intended for use (unquoted) as special markers in
+     argument lists and in certain syntactic forms. For run-time flags
+     and enumerations, use symbols instead of keywords.
+   - A pair joins two arbitrary values. The cons procedure constructs
+     pairs, and the car and cdr procedures extract the first and
+     second elements of the pair, respectively. The pair? predicate
+     recognizes pairs.
+   - A list is a combination of pairs that creates a linked list. More
+     precisely, a list is either the empty list null, or it is a pair
+     whose first element is a list element and whose second element is
+     a list. The list? predicate recognizes lists. The null? predicate
+     recognizes the empty list. (*Fuck this recursive definition)*
+
+
+
 
 
 
