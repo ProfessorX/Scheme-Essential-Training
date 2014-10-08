@@ -136,10 +136,16 @@
    - Instead of just an identifier, an argument (other than a rest
      argument) in a lambda form can be specified with an identifier
      and a default value.
-   -  The function supplied to make-keyword-procedure receives keyword
-      arguments through parallel lists in the first two (by-position)
-      arguments, and then all by-position arguments from an
-      application as the remaining by-position arguments. 
+   - The function supplied to make-keyword-procedure receives keyword
+     arguments through parallel lists in the first two (by-position)
+     arguments, and then all by-position arguments from an
+     application as the remaining by-position arguments.
+   - In a sense, make-add-suffix is a function takes two arguments,
+     but it takes them one at a time. A function that takes some of
+     its arguments and returns a function to consume more is sometimes
+     called a curried function.
+   - 
+
 
 
 
