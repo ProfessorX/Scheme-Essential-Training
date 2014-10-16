@@ -8,3 +8,5 @@
   (substring str 4 7))
 
 ;; (printf "Life is awesome in the UAE!")
+
+;; There and back again.

@@ -147,7 +147,8 @@ a-b-c+1-2-3
 ; test
 ; (reply-more "mine is lime green")
 ; (reply-more "what is your favorite color?")
-; (reply-more "goodbye cruel world!") 	(reply-more "hello, racket!")
+; (reply-more "goodbye cruel world!") 	
+; (reply-more "hello, racket!")
 
 
 ;; function calls, again
@@ -157,6 +158,7 @@ a-b-c+1-2-3
 ; test
 (double "mnah")
 (double 5)
+(double '(a))
 
 ;; Anonymous functions with lambda λ
 (define a 1)
@@ -169,7 +171,7 @@ a-b-c+1-2-3
 (twice sqrt 16)
 
 (define (louder s)
-  (string-append s "!"))
+  (string-append s "!")) 
 ; test
 (twice louder "Hello")  ;; but if the call to twice is the only place where louder is used...
 

@@ -83,6 +83,44 @@ given
 surname
 
 ; Internal Definitions
+; (lambda gen-formals
+;   body ...+)
+(lambda (f)  ; no definitions
+  (printf "running\n")
+  (f 0))
+
+(lambda (f)  ; one definition
+  (define (log-it what)
+    (printf "~a\n" what))
+  (log-it "running")
+  (f 0)
+  (log-it "done"))
+
+(lambda (f n)
+  (define (call n)
+    (if (zero? n)
+        (log-it "done")
+        (begin
+          (log-it "running")
+          (f n)
+          (call (- n 1)))))
+  (define (log-it what)
+    (printf "~a\n" what))
+  (call n))
+
+
+#|
+Internal definitions in a particular body sequence are mutually recursive; that is, any defini-
+tion can refer to any other definition—as long as the reference isn’t actually evaluated before
+its definition takes place. If a definition is referenced too early, an error occurs.
+|#
+; This will NOT work
+(define (weird)
+  (define x x)
+  x)
+; test
+(weird)
+
 
 
 

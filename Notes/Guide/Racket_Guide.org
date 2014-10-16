@@ -144,7 +144,13 @@
      but it takes them one at a time. A function that takes some of
      its arguments and returns a function to consume more is sometimes
      called a curried function.
+   - Internal definitions in a particular body sequence are mutually
+     recursive; that is, any definition can refer to any other
+     definition—as long as the reference isn’t actually evaluated
+     before its definition takes place. If a definition is referenced
+     too early, an error occurs.
    - 
+
 
 
 

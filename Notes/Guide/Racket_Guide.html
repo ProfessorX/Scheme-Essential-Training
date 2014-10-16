@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Racket_Guide</title>
-<!-- 2014-10-06 Mon 17:31 -->
+<!-- 2014-10-15 Wed 16:52 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Abraham Xiao" />
@@ -367,6 +367,24 @@ the program for which the binding applies is the scope of the
 binding. The set of bindings in effect for a given expression is
 the expression’s environment.
 </li>
+<li>As a convenience, the apply function accepts additional arguments
+between the function and the list. The additional arguments are
+effectively consed onto the argument list.
+</li>
+<li>Instead of just an identifier, an argument (other than a rest
+argument) in a lambda form can be specified with an identifier
+and a default value.
+</li>
+<li>The function supplied to make-keyword-procedure receives keyword
+arguments through parallel lists in the first two (by-position)
+arguments, and then all by-position arguments from an
+application as the remaining by-position arguments.
+</li>
+<li>In a sense, make-add-suffix is a function takes two arguments,
+but it takes them one at a time. A function that takes some of
+its arguments and returns a function to consume more is sometimes
+called a curried function.
+</li>
 <li></li>
 </ul>
 </div>
@@ -375,8 +393,8 @@ the expression’s environment.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Abraham Xiao</p>
-<p class="date">Created: 2014-10-06 Mon 17:31</p>
-<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.8)</p>
+<p class="date">Created: 2014-10-15 Wed 16:52</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
