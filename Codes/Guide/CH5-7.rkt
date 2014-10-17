@@ -20,4 +20,26 @@
 (sprout-kind lunch)
 (sprout 'garlic)
 
+(sprout? #s(sprout bean #f 17))
+
+(struct sprout (kind yummy? count) #:prefab)  ; readfine
+; test
+(sprout? #s(sprout bean #f 17))
+(sprout? lunch)
+
+(struct building (rooms [location #:mutable]) #:prefab)
+(struct house building ([occupied #:auto]) #:prefab
+        #:auto-value 'no)
+(house 5 'factory)
+
+#|
+Since the expression reader can generate prefab instances, they are useful when convenient
+serialization is more important than abstraction. Opaque and transparent structures also can
+be serialized, however, if they are defined with serializable-struct as described in §8.4
+“Datatypes and Serialization”.
+|#
+
+
+
+
 

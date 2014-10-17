@@ -212,7 +212,29 @@
      library can use an opaque structure to encapsulate data, and
      clients of the library cannot manipulate the data in the
      structure except as allowed by the library.
-   - 
+   - Overall, the different options for structure types offer a
+     spectrum of possibilities from more abstract to more convenient:
+     - Opaque (the default) : Instances cannot be inspected or forged
+       without access to the structure-type declaration.
+     - Transparent : Anyone can inspect or create an instance without
+       access to the structure- type declaration, which means that the
+       value printer can show the content of an in- stance.
+     - Prefab : Anyone can inspect or create an instance at any time,
+       without prior access to a structure-type declaration or an
+       example instance.
+   - The Racket installation’s "collects" directory, however, is only
+     one place that require looks for collection directories. Other
+     places include the user-specific directory reported by
+     (find-user-collects-dir) and directories configured through the
+     PLTCOLLECTS search path. Finally, and most typically, collections
+     are found through installed packages.
+   - Unless otherwise specified, a module that is documented as a
+     “language” using the #lang notation will expand to module in the
+     same way as #lang racket. The documented lan- guage name can be
+     used directly with module or require, too. 
+
+
+
 
 
 
