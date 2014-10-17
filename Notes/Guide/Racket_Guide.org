@@ -194,6 +194,29 @@
        avoids race conditions with other threads. (The reference is
        the good old *Racket Guide*.)
 
+** Programmer-Defined Datatypes
+   - A struct form places no constraints on the kinds of values that
+     can appear for fields in an instance of the structure type. For
+     example, (posn "apple" #f) produces an instance of posn, even
+     though "apple" and #f are not valid coordinates for the obvious
+     uses of posn instances. Enforcing constraints on field values,
+     such as requiring them to be numbers, is normally the job of a
+     contract, as discussed later in §7 “Contracts”.
+   - An instance of a transparent structure type prints like a call to
+     the constructor, so that it shows the structures field values. A
+     transparent structure type also allows reflective operations,
+     such as struct? and struct-info, to be used on its instances (see
+     §15 “Reflection and Dynamic Evaluation”).
+   - Structure types are opaque by default, because opaque structure
+     instances provide more encapsulation guarantees. That is, a
+     library can use an opaque structure to encapsulate data, and
+     clients of the library cannot manipulate the data in the
+     structure except as allowed by the library.
+   - 
+
+
+
+
 
 
 
