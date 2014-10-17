@@ -149,7 +149,62 @@
      definition—as long as the reference isn’t actually evaluated
      before its definition takes place. If a definition is referenced
      too early, an error occurs.
-   - 
+   - Although using set! is sometimes appropriate, Racket style
+     generally discourages the use of set!. 
+     - As in any modern language, assigning to a shared identifier is
+       no substitute for passing an argument to a procedure or
+       getting its result.
+     - A sequence of assignments to a local variable is far inferior
+       to nested bindings.
+     - Using assignment to accumulate results from an iteration is bad
+       style. Accumulating through a loop argument is better.
+     - For cases where stateful objects are necessary or appropriate,
+       then implementing the object’s state with set! is fine.
+   - All else being equal, a program that uses no assignments or
+     mutation is always preferable to one that uses assignments or
+     mutation. While side effects are to be avoided, however, they
+     should be used if the resulting code is significantly more
+     readable or if it implements a significantly better algorithm.
+   - The quote form is rarely used for a datum that is a boolean,
+     number, or string by itself, since the printed forms of those
+     values can already be used as constants. The quote form is more
+     typically used for symbols and lists, which have other meanings
+     (identifiers, function calls, etc.) when not quoted.
+   - If a quasiquote form appears within an enclosing quasiquote form,
+     then the inner quasiquote effectively cancels one layer of
+     unquote and unquote-splicing forms, so that a second unquote or
+     unquote-splicing is needed.
+   - In a parameterize form, each parameter-expr must produce a
+     parameter. During the evaluation of the bodys, each specified
+     parameter is given the result of the corresponding value-expr
+     . When control leaves the parameterize form—either through a
+     normal re- turn, an exception, or some other escape—the parameter
+     reverts to its earlier value.
+   - Parameters, however, offer several crucial advantages over set!:
+     - The parameterize form helps automatically reset the value of a
+       parameter when control escapes due to an exception. Adding
+       exception handlers and other forms to rewind a set! is
+       relatively tedious.
+     - Parameters work nicely with tail calls (see §2.3.3 “Tail
+       Recursion”). The last body in a parameterize form is in tail
+       position with respect to the parameterize form.
+     - Parameters work properly with threads (see §11.1
+       “Threads”). The parameterize form adjusts the value of a
+       parameter only for evaluation in the current thread, which
+       avoids race conditions with other threads. (The reference is
+       the good old *Racket Guide*.)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
