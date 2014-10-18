@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <title>Racket_Guide</title>
-<!-- 2014-10-15 Wed 16:52 -->
+<!-- 2014-10-18 Sat 16:04 -->
 <meta  http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta  name="generator" content="Org-mode" />
 <meta  name="author" content="Abraham Xiao" />
@@ -189,6 +189,8 @@ for the JavaScript code in this tag.
 <li><a href="#sec-1-1">1.1. Racket Essentials</a></li>
 <li><a href="#sec-1-2">1.2. Built-In Datatypes</a></li>
 <li><a href="#sec-1-3">1.3. Expressions and Definitions</a></li>
+<li><a href="#sec-1-4">1.4. Programmer-Defined Datatypes</a></li>
+<li><a href="#sec-1-5">1.5. Contracts</a></li>
 </ul>
 </li>
 </ul>
@@ -385,7 +387,150 @@ but it takes them one at a time. A function that takes some of
 its arguments and returns a function to consume more is sometimes
 called a curried function.
 </li>
+<li>Internal definitions in a particular body sequence are mutually
+recursive; that is, any definition can refer to any other
+definition—as long as the reference isn’t actually evaluated
+before its definition takes place. If a definition is referenced
+too early, an error occurs.
+</li>
+<li>Although using set! is sometimes appropriate, Racket style
+generally discourages the use of set!. 
+<ul class="org-ul">
+<li>As in any modern language, assigning to a shared identifier is
+no substitute for passing an argument to a procedure or
+getting its result.
+</li>
+<li>A sequence of assignments to a local variable is far inferior
+to nested bindings.
+</li>
+<li>Using assignment to accumulate results from an iteration is bad
+style. Accumulating through a loop argument is better.
+</li>
+<li>For cases where stateful objects are necessary or appropriate,
+then implementing the object’s state with set! is fine.
+</li>
+</ul>
+</li>
+<li>All else being equal, a program that uses no assignments or
+mutation is always preferable to one that uses assignments or
+mutation. While side effects are to be avoided, however, they
+should be used if the resulting code is significantly more
+readable or if it implements a significantly better algorithm.
+</li>
+<li>The quote form is rarely used for a datum that is a boolean,
+number, or string by itself, since the printed forms of those
+values can already be used as constants. The quote form is more
+typically used for symbols and lists, which have other meanings
+(identifiers, function calls, etc.) when not quoted.
+</li>
+<li>If a quasiquote form appears within an enclosing quasiquote form,
+then the inner quasiquote effectively cancels one layer of
+unquote and unquote-splicing forms, so that a second unquote or
+unquote-splicing is needed.
+</li>
+<li>In a parameterize form, each parameter-expr must produce a
+parameter. During the evaluation of the bodys, each specified
+parameter is given the result of the corresponding value-expr
+. When control leaves the parameterize form—either through a
+normal re- turn, an exception, or some other escape—the parameter
+reverts to its earlier value.
+</li>
+<li>Parameters, however, offer several crucial advantages over set!:
+<ul class="org-ul">
+<li>The parameterize form helps automatically reset the value of a
+parameter when control escapes due to an exception. Adding
+exception handlers and other forms to rewind a set! is
+relatively tedious.
+</li>
+<li>Parameters work nicely with tail calls (see §2.3.3 “Tail
+Recursion”). The last body in a parameterize form is in tail
+position with respect to the parameterize form.
+</li>
+<li>Parameters work properly with threads (see §11.1
+“Threads”). The parameterize form adjusts the value of a
+parameter only for evaluation in the current thread, which
+avoids race conditions with other threads. (The reference is
+the good old <b>Racket Guide</b>.)
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Programmer-Defined Datatypes</h3>
+<div class="outline-text-3" id="text-1-4">
+<ul class="org-ul">
+<li>A struct form places no constraints on the kinds of values that
+can appear for fields in an instance of the structure type. For
+example, (posn "apple" #f) produces an instance of posn, even
+though "apple" and #f are not valid coordinates for the obvious
+uses of posn instances. Enforcing constraints on field values,
+such as requiring them to be numbers, is normally the job of a
+contract, as discussed later in §7 “Contracts”.
+</li>
+<li>An instance of a transparent structure type prints like a call to
+the constructor, so that it shows the structures field values. A
+transparent structure type also allows reflective operations,
+such as struct? and struct-info, to be used on its instances (see
+§15 “Reflection and Dynamic Evaluation”).
+</li>
+<li>Structure types are opaque by default, because opaque structure
+instances provide more encapsulation guarantees. That is, a
+library can use an opaque structure to encapsulate data, and
+clients of the library cannot manipulate the data in the
+structure except as allowed by the library.
+</li>
+<li>Overall, the different options for structure types offer a
+spectrum of possibilities from more abstract to more convenient:
+<ul class="org-ul">
+<li>Opaque (the default) : Instances cannot be inspected or forged
+without access to the structure-type declaration.
+</li>
+<li>Transparent : Anyone can inspect or create an instance without
+access to the structure- type declaration, which means that the
+value printer can show the content of an in- stance.
+</li>
+<li>Prefab : Anyone can inspect or create an instance at any time,
+without prior access to a structure-type declaration or an
+example instance.
+</li>
+</ul>
+</li>
+<li>The Racket installation’s "collects" directory, however, is only
+one place that require looks for collection directories. Other
+places include the user-specific directory reported by
+(find-user-collects-dir) and directories configured through the
+PLTCOLLECTS search path. Finally, and most typically, collections
+are found through installed packages.
+</li>
+<li>Unless otherwise specified, a module that is documented as a
+“language” using the #lang notation will expand to module in the
+same way as #lang racket. The documented language name can be
+used directly with module or require, too.
+</li>
+<li>Consequently, re-declaration of a module is not generally
+allowed. For file-based modules, simply changing the file does
+not lead to a re-declaration in any case, because file-based
+modules are loaded on demand, and the previously loaded
+declarations satisfy future re- quests. It is possible to use
+Racket’s reflection support to re-declare a module, however, and
+non-file modules can be re-declared in the REPL; in such cases,
+the re-declaration may fail if it involves the re-definition of a
+previously constant binding.
+</li>
 <li></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Contracts</h3>
+<div class="outline-text-3" id="text-1-5">
+<ul class="org-ul">
+<li>Life is a bitch.
+</li>
 </ul>
 </div>
 </div>
@@ -393,7 +538,7 @@ called a curried function.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Abraham Xiao</p>
-<p class="date">Created: 2014-10-15 Wed 16:52</p>
+<p class="date">Created: 2014-10-18 Sat 16:04</p>
 <p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.3.1 (<a href="http://orgmode.org">Org</a> mode 8.2.10)</p>
 <p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
