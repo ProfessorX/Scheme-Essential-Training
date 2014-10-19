@@ -272,7 +272,11 @@
      won’t get a contract error for this interface. If you can’t trust
      yourself to get the initial value right, you need to communicate
      the initial value across a boundary.
+   - Note that such considerations don’t apply to the world of
+     first-order contracts. Only a higher- order (or lazy) language
+     forces the programmer to express contracts with such precision.
    - 
+
 
 
 
