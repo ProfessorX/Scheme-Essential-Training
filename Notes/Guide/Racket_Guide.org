@@ -275,7 +275,40 @@
    - Note that such considerations don’t apply to the world of
      first-order contracts. Only a higher- order (or lazy) language
      forces the programmer to express contracts with such precision.
+   -
+
+** Input and Output
+   - As noted throughout §3 “Built-In Datatypes”, Racket provides
+     three ways to print an instance of a built-in value:
+     - print, which prints a value in the same way that is it printed
+       for a REPL result
+     - write, which prints a value in such a way that read on the
+       output produces the value back
+     - display, which tends to reduce a value to just its character or
+       byte content—at least for those datatypes that are primarily
+       about characters or bytes, otherwise it falls back to the same
+       output as write.
+   - Functions like read-line, read, display, and write all work in
+     terms of characters (which correspond to Unicode scalar
+     values). Conceptually, they are implemented in terms of read-char
+     and write-char.
+   - In fact, the read-char and write-char functions are conceptually
+     implemented in terms of read-byte and write-byte. When a single
+     byte’s value is less than 128, then it corre- sponds to an ASCII
+     character. Any other byte is treated as part of a UTF-8 sequence,
+     where UTF-8 is a particular standard way of encoding Unicode
+     scalar values in bytes (which has the nice property that ASCII
+     characters are encoded as themselves). Thus, a single read- char
+     may call read-byte multiple times, and a single write-char may
+     generate multiple output bytes.
+   -
+
+** Regular Expressions
    - 
+
+
+
+
 
 
 
