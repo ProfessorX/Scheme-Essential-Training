@@ -309,20 +309,27 @@
 
 ** Exceptions and Control
    - A more traditional continuation operator in Racket (or Scheme) is
-     call-with-current-continuation, which is usually abbreviated call/cc. It is like
-   call-with-composable-continuation, but applying the captured
-   continuation first aborts (to the current prompt) before restoring the
-   saved continuation. In addition, Scheme systems traditionally
-   support a single prompt at the program start, instead of allowing new
-   prompts via call-with-continuation-prompt. Continuations as in Racket
-   are sometimes called delimited continuations, since a program can
-   introduce new delimiting prompts, and continuations as captured by
-   call-with-composable-continuation are sometimes called composable
-   continuations, because they do not have a built-in abort. 
+     call-with-current-continuation, which is usually abbreviated
+     call/cc. It is like call-with-composable-continuation, but
+     applying the captured continuation first aborts (to the current
+     prompt) before restoring the saved continuation. In addition,
+     Scheme systems traditionally support a single prompt at the
+     program start, instead of allowing new prompts via
+     call-with-continuation-prompt. Continuations as in Racket are
+     sometimes called delimited continuations, since a program can
+     introduce new delimiting prompts, and continuations as captured
+     by call-with-composable-continuation are sometimes called
+     composable continuations, because they do not have a built-in
+     abort.  
    -
 
 ** Iterations and Comprehensions
-   - 
+   - The grammars above are not complete, because the set of syntactic
+     patterns that provide good performance is extensible, just like
+     the set of sequence values. The documentation for a sequence
+     constructor should indicate the performance benefits of using it
+     directly in a for clause .
+
 
 
 
